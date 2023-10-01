@@ -1,4 +1,9 @@
-// Замените 'YOUR_API_KEY' на ваш собственный API ключ Unsplash
+document.addEventListener('DOMContentLoaded', function () {
+    // После загрузки документа, устанавливаем фокус в поле поиска
+    const searchInput = document.getElementById('search-input');
+    searchInput.focus();
+});
+
 const apiKey = 'RlWnx6EVZISmHMzP7RiVAt9FsKchM7jPiNa_IeChESs';
 const apiUrl = 'https://api.unsplash.com/photos/random/?count=15&orientation=landscape'; // Загружаем 15 случайных изображений
 const searchInput = document.getElementById('search-input');
@@ -26,7 +31,7 @@ function handleIconClick(iconClass) {
 // Функция для загрузки изображений из Unsplash API
 async function fetchImages(query) {
     try {
-        const url = query ? `https://api.unsplash.com/photos/random/?count=10&query=${query}&orientation=landscape` : apiUrl;
+        const url = query ? `https://api.unsplash.com/photos/random/?count=15&query=${query}&orientation=landscape` : apiUrl;
         const response = await fetch(url, {
             headers: {
                 Authorization: `Client-ID ${apiKey}`,
@@ -72,10 +77,22 @@ async function fetchImages(query) {
 searchInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         const query = searchInput.value;
-        const searchUrl = query ? `https://api.unsplash.com/photos/random/?count=10&query=${query}` : apiUrl;
+        const searchUrl = query ? `https://api.unsplash.com/photos/${query}/?count=10&query=${query}` : apiUrl;
         fetchImages(searchUrl);
     }
 });
+
+// Обработчик события для кнопки "Search"
+searchButton.addEventListener('click', () => {
+    handleSearch();
+});
+
+function handleSearch() {
+    const query = searchInput.value;
+    const searchUrl = query ? `https://api.unsplash.com/photos/${query}/?count=10&query=${query}` : apiUrl;
+    fetchImages(searchUrl);
+}
+
 
 
 // Находим все элементы с классом 'icon' и добавляем обработчик события для каждой из них

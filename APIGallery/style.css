@@ -59,7 +59,7 @@ h1, h2, .search-container {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background-color: white;
+    background-color: transparent;
 }
 
 
@@ -93,3 +93,27 @@ img:hover{
     transition: 1s ease-in-out;
 }
 
+footer{
+    position: sticky;
+    height: 50px;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: white;
+}
+
+.github img{
+    height: 40px;
+    width: 40px;
+}
+
+.rsschool{
+    width: 80px;
+}
+
+.date{
+    font-family: roboto;
+    font-size: 20px;
+}
